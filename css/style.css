@@ -1,4 +1,3 @@
-<style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -11,12 +10,11 @@
   --text-muted: #6b6a65;
   --text-faint: #a09f9a;
   --teal: #234e70;
-  --teal-bg: #e8eef3;
   --mono: 'DM Mono', monospace;
   --serif: 'DM Serif Display', serif;
   --sans: 'Outfit', sans-serif;
   --nav-h: 64px;
-  --scroll-offset: calc(var(--nav-h) + 3.5rem);
+  --scroll-offset: calc(var(--nav-h) + 0.75rem);
   --transition: 0.22s ease;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -24,11 +22,6 @@
   --anim-duration-fast: 0.75s;
   --page-pad: clamp(0.75rem, 1.25vw, 1rem);
   --content-max: 1520px;
-  --gh-empty: #ebedf0;
-  --gh-l1: #9be9a8;
-  --gh-l2: #40c463;
-  --gh-l3: #30a14e;
-  --gh-l4: #216e39;
 }
 
 /* Shared content width — nav, sections, footer align to the same edges */
@@ -59,12 +52,6 @@
   --text-muted: #a09f9a;
   --text-faint: #6b6a65;
   --teal: #6a9fd8;
-  --teal-bg: rgba(106, 159, 216, 0.14);
-  --gh-empty: #161b22;
-  --gh-l1: #0e4429;
-  --gh-l2: #006d32;
-  --gh-l3: #26a641;
-  --gh-l4: #39d353;
 }
 
 html {
@@ -357,20 +344,22 @@ h1.hero-name em { font-style: italic; color: var(--text-muted); }
 .gallery-thumb.active { opacity: 1; outline-color: var(--teal); }
 
 /* ── SECTION COMMONS ── */
-section { padding: clamp(4rem, 8vw, 6.25rem) 0; }
+section { padding: clamp(2rem, 4vw, 3.25rem) 0; }
 .section-label {
   display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  font-family: var(--mono); font-size: 11px; font-weight: 500; line-height: 1;
   color: var(--text-faint); letter-spacing: 0.12em; text-transform: uppercase;
-  margin-bottom: 3rem;
+  margin-bottom: 0.125rem;
 }
 .section-label::before { content: attr(data-num); }
 h2.section-title {
   font-family: var(--serif);
   font-size: clamp(2rem, 4vw, 3.25rem);
   font-weight: 400; line-height: 1.1;
-  margin-bottom: 3rem; letter-spacing: -0.01em; color: var(--text);
+  margin-bottom: 1rem; letter-spacing: -0.01em; color: var(--text);
 }
+h2.section-title em,
+.footer-left h2 em { font-style: italic; color: var(--text-muted); }
 
 /* ── ABOUT ── */
 .about { background: var(--bg-alt); }
@@ -436,6 +425,7 @@ h2.section-title {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1px; background: var(--border); width: 100%;
 }
+.project-card:only-child { grid-column: 1 / -1; }
 .project-card {
   background: var(--surface); padding: 1.75rem 2rem;
   display: flex; flex-direction: column; gap: 0.9rem;

@@ -1,10 +1,13 @@
 export function initGallery() {
-  const slides = [...document.querySelectorAll('#photoGallery .gallery-slide')];
+  const gallery = document.getElementById('photoGallery');
+  const slides = [...gallery.querySelectorAll('.gallery-slide')];
   const thumbsWrap = document.getElementById('galleryThumbs');
   const dotsWrap = document.getElementById('galleryDots');
   const meta = document.getElementById('galleryMeta');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let index = 0;
   let timer;
+  let paused = false;
 
   slides.forEach((slide, i) => {
     const thumb = document.createElement('button');
@@ -44,11 +47,21 @@ export function initGallery() {
 
   function resetTimer() {
     clearInterval(timer);
+    if (reducedMotion || paused) return;
     timer = setInterval(() => goTo(index + 1), 6000);
   }
 
   document.getElementById('galleryPrev').addEventListener('click', () => goTo(index - 1, true));
   document.getElementById('galleryNext').addEventListener('click', () => goTo(index + 1, true));
+
+  gallery.addEventListener('mouseenter', () => { paused = true; resetTimer(); });
+  gallery.addEventListener('mouseleave', () => { paused = false; resetTimer(); });
+  gallery.addEventListener('focusin', () => { paused = true; resetTimer(); });
+  gallery.addEventListener('focusout', () => { paused = false; resetTimer(); });
+  document.addEventListener('visibilitychange', () => {
+    paused = document.hidden;
+    resetTimer();
+  });
 
   goTo(0);
   resetTimer();

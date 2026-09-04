@@ -3,7 +3,7 @@ const NAV_SECTIONS = ['top', 'about', 'experience', 'projects', 'education', 'co
 function getScrollOffset() {
   const styles = getComputedStyle(document.documentElement);
   const navH = parseFloat(styles.getPropertyValue('--nav-h')) || 64;
-  const extra = parseFloat(styles.fontSize) * 3.5 || 56;
+  const extra = parseFloat(styles.fontSize) * 0.75 || 12;
   return navH + extra;
 }
 
